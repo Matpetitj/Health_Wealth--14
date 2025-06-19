@@ -1,82 +1,73 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "Helvetica Neue", sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
-}
-
-.container {
+.createEmployee_container {
   max-width: 700px;
   margin: 3rem auto;
   padding: 2rem;
-  background-color: #ffffff;
+  background-color: #FAFAF0;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
-.container h1 {
+.createEmployee_container h1 {
   text-align: center;
   font-weight: 600;
   color: #4f772d;
   margin-bottom: 1rem;
 }
-.container a {
+.createEmployee_container a {
   display: inline-block;
   margin-bottom: 1rem;
   color: #6a9f4e;
   text-decoration: none;
 }
-.container a:hover {
+.createEmployee_container a:hover {
   text-decoration: underline;
 }
-.container h2 {
+.createEmployee_container h2 {
   margin-bottom: 2rem;
   color: #4f772d;
 }
-.container form {
+.createEmployee_container form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
-.container form label {
-  font-weight: 500;
+.createEmployee_container form label {
+  font-weight: 700;
   margin-bottom: 0.3rem;
 }
-.container form input,
-.container form select {
+.createEmployee_container form input,
+.createEmployee_container form select {
   padding: 0.5rem;
-  border-radius: 6px;
   border: 1px solid #ccc;
   font-size: 1rem;
 }
-.container form input:focus,
-.container form select:focus {
+.createEmployee_container form input:focus,
+.createEmployee_container form select:focus {
   outline: none;
   border-color: #6a9f4e;
   box-shadow: 0 0 0 2px rgba(106, 159, 78, 0.2);
 }
-.container form fieldset {
+.createEmployee_container form fieldset {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 1rem;
 }
-.container form fieldset legend {
+.createEmployee_container form fieldset legend {
   font-weight: bold;
   color: #4f772d;
   padding: 0 0.5rem;
 }
-.container form button {
+.createEmployee_container form button {
   margin-top: 1.5rem;
   padding: 0.75rem;
   background-color: #6a9f4e;
-  color: #ffffff;
+  color: #FAFAF0;
   border: none;
   border-radius: 6px;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
-.container form button:hover {
+.createEmployee_container form button:hover {
   background-color: #4f772d;
 }
 
@@ -92,6 +83,14 @@ body {
   border: 0;
   width: 100%;
   height: 100%;
+  font-family: "Helvetica Neue", sans-serif;
+  color: #333;
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
 /*# sourceMappingURL=index.css.map */

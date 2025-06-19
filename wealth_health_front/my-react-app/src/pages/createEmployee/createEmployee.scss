@@ -1,14 +1,6 @@
 @use "../../utils/scss/_variables.scss";
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: variables.$font-main;
-  background-color: variables.$gray-light;
-  color: variables.$gray-dark;
-}
-
-.container {
+.createEmployee_container {
   max-width: 700px;
   margin: 3rem auto;
   padding: 2rem;
@@ -45,14 +37,13 @@ body {
     gap: 1rem;
 
     label {
-      font-weight: 500;
+      font-weight: 700;
       margin-bottom: 0.3rem;
     }
 
     input,
     select {
       padding: 0.5rem;
-      border-radius: 6px;
       border: 1px solid #ccc;
       font-size: 1rem;
 
