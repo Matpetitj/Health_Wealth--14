@@ -1,81 +1,71 @@
-@use "../../utils/scss/_variables.scss";
+@use "../../utils/scss/variables"; // Si tu as un fichier de variables
 
 .createEmployee_container {
-  max-width: 700px;
-  margin: 3rem auto;
+  max-width: 800px;
+  margin: 2rem auto;
   padding: 2rem;
   background-color: variables.$white;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.08);
 
-  h1 {
+  .createEmployee_title {
+    font-size: 2rem;
+    color: variables.$green-dark;
     text-align: center;
-    font-weight: 600;
-    color: variables.$green-dark;
-    margin-bottom: 1rem;
   }
 
-  a {
-    display: inline-block;
-    margin-bottom: 1rem;
-    color: variables.$green-primary;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  h2 {
-    margin-bottom: 2rem;
-    color: variables.$green-dark;
-  }
-
-  form {
+  form#create-employee {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 
     label {
-      font-weight: 700;
-      margin-bottom: 0.3rem;
+      font-weight: 600;
+      color: variables.$gray-dark;
     }
 
     input,
     select {
       padding: 0.5rem;
-      border: 1px solid #ccc;
       font-size: 1rem;
-
-      &:focus {
-        outline: none;
-        border-color: variables.$green-primary;
-        box-shadow: 0 0 0 2px rgba(106, 159, 78, 0.2);
-      }
+      border: 1px solid variables.$gray-light;
+      border-radius: 4px;
     }
 
-    fieldset {
-      border: 1px solid #ddd;
+    .address {
+      border: 1px solid variables.$gray-light;
       border-radius: 8px;
       padding: 1rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
 
       legend {
         font-weight: bold;
         color: variables.$green-dark;
-        padding: 0 0.5rem;
+        grid-column: span 2;
+      }
+
+      label {
+        grid-column: span 2;
+      }
+
+      input,
+      select {
+        grid-column: span 2;
       }
     }
 
-    button {
-      margin-top: 1.5rem;
-      padding: 0.75rem;
+    button[type="submit"] {
       background-color: variables.$green-primary;
-      color: variables.$white;
+      color: white;
       border: none;
-      border-radius: 6px;
+      padding: 0.75rem;
       font-size: 1rem;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background-color 0.2s ease;
+      margin-top: 1rem;
+      transition: background-color 0.3s;
 
       &:hover {
         background-color: variables.$green-dark;

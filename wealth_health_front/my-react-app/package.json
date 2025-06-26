@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
+    "@tanstack/react-table": "^8.21.3",
     "date-fns": "^4.1.0",
+    "djyn-custom-lib-modal": "^2.1.3",
     "react": "^19.1.0",
     "react-datepicker": "^8.4.0",
     "react-dom": "^19.1.0",

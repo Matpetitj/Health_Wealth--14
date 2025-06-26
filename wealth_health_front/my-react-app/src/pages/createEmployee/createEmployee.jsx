@@ -7,12 +7,16 @@ import { addEmployee } from '../../redux/slice/employeeSlice';
 
 import DatePicker from 'react-datepicker';
 
+import Modal from 'djyn-custom-lib-modal';
+
 import pays from "../../data/pays.json";
 import departements from "../../data/departements.json";
 
 import 'react-datepicker/dist/react-datepicker.css';
 
 const CreateEmployee = () => {
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -36,7 +40,7 @@ const CreateEmployee = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addEmployee(formData));
-    console.log('Employee created:', formData);
+    setIsModalOpen(true);
     setFormData({
     firstName: '',
     lastName: '',
@@ -108,9 +112,17 @@ const CreateEmployee = () => {
             <option key={idx} value={dept}>{dept}</option>
           )}
         </select>
-
         <button type="submit">Sauvegarder</button>
       </form>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        backgroundColor="#00000088"
+        textColor="#4f772d"
+        closeButtonColor="#333"
+      >
+        <h2>Employé(e) ajouté(e)</h2>
+      </Modal>
     </div>
   );
 };

@@ -1,0 +1,50 @@
+@use "../../utils/scss/variables";
+
+.listEmployee_container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: variables.$white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.listEmployee_title {
+  font-size: 2rem;
+  color: variables.$green-dark;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.listEmployee_tableWrapper {
+  overflow-x: auto;
+}
+
+.listEmployee_table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.listEmployee_thead {
+  background-color: variables.$green-primary;
+  color: white;
+}
+
+.listEmployee_th,
+.listEmployee_td {
+  padding: 1rem;
+  text-align: left;
+  font-size: 0.95rem;
+  border-bottom: 1px solid variables.$gray-light;
+}
+
+.listEmployee_row:nth-child(even) .listEmployee_td {
+  background-color: #f9f9f1;
+}
+
+.listEmployee_row:hover .listEmployee_td {
+  background-color: #eef3e7;
+}
