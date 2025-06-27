@@ -9,6 +9,7 @@
 .createEmployee_container .createEmployee_title {
   font-size: 2rem;
   color: #4f772d;
+  margin-bottom: 2rem;
   text-align: center;
 }
 .createEmployee_container form#create-employee {

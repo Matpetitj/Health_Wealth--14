@@ -37,11 +37,34 @@ const CreateEmployee = () => {
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(addEmployee(formData));
-    setIsModalOpen(true);
-    setFormData({
+const handleSubmit = (e) => {
+  e.preventDefault();
+
+  // Expressions pour validation
+  const nameRegex = /^[A-Za-zÀ-ÿ\s'-]+$/;
+  const zipCodeRegex = /^[0-9]{4,10}$/;
+
+  // Vérifications simples
+  if (
+    !formData.firstName.match(nameRegex) ||
+    !formData.lastName.match(nameRegex) ||
+    !formData.dateOfBirth ||
+    !formData.startDate ||
+    formData.street.trim() === '' ||
+    formData.city.trim() === '' ||
+    formData.state.trim() === '' ||
+    !formData.zipCode.toString().match(zipCodeRegex) ||
+    formData.department.trim() === ''
+  ) {
+    alert("Merci de remplir correctement tous les champs.");
+    return;
+  }
+
+  dispatch(addEmployee(formData));
+  setIsModalOpen(true);
+
+  // Reset
+  setFormData({
     firstName: '',
     lastName: '',
     dateOfBirth: null,
@@ -51,12 +74,12 @@ const CreateEmployee = () => {
     state: '',
     zipCode: '',
     department: 'Sales',
-});
-  };
+  });
+};
 
   return (
     <div className="createEmployee_container">
-      <h1>Formulaire de création d'employé</h1>
+      <h1 className="createEmployee_title">Formulaire de création d'employé</h1>
 
       <form onSubmit={handleSubmit} id="create-employee">
         <label htmlFor="firstName">Prénom</label>
