@@ -130,20 +130,3 @@ function ListEmployees() {
 }
 
 export default ListEmployees;
-
-
-
-//   // Configuration React Table
-//   const table = useReactTable({
-//     data: employees,
-//     columns,
-//     state: { globalFilter },
-//     onGlobalFilterChange: setGlobalFilter,
-//     getCoreRowModel: getCoreRowModel(),
-//     getFilteredRowModel: getFilteredRowModel(),
-//     getSortedRowModel: getSortedRowModel(),
-//     getPaginationRowModel: getPaginationRowModel(),
-//     initialState: {
-//       pagination: { pageSize: 10 }
-//     },
-//  });
