@@ -13,11 +13,11 @@ import { useMemo, useState } from "react";
 // Utilitaire pour formater une date en yyyy-MM-dd
 const formatDate = (date) => {
   if (!date) return "";
-  const d = new Date(date);
-  const year = d.getFullYear();
-  const month = String(d.getMonth() + 1).padStart(2, "0");
-  const day = String(d.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
+  return new Intl.DateTimeFormat("fr-CA", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date(date));
 };
 
 function ListEmployees() {
