@@ -10,6 +10,16 @@ import {
 } from "@tanstack/react-table";
 import { useMemo, useState } from "react";
 
+// Utilitaire pour formater une date en yyyy-MM-dd
+const formatDate = (date) => {
+  if (!date) return "";
+  const d = new Date(date);
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
+
 function ListEmployees() {
   const employees = useSelector((state) => state.employees?.employees) || [];
 
@@ -18,9 +28,17 @@ function ListEmployees() {
   const columns = useMemo(() => [
     { header: "Prénom", accessorKey: "firstName" },
     { header: "Nom", accessorKey: "lastName" },
-    { header: "Date d'entrée", accessorKey: "startDate" },
+    {
+      header: "Date d'entrée",
+      accessorKey: "startDate",
+      cell: ({ getValue }) => formatDate(getValue())
+    },
     { header: "Département", accessorKey: "department" },
-    { header: "Date de naissance", accessorKey: "dateOfBirth" },
+    {
+      header: "Date de naissance",
+      accessorKey: "dateOfBirth",
+      cell: ({ getValue }) => formatDate(getValue())
+    },
     { header: "Rue", accessorKey: "street" },
     { header: "Ville", accessorKey: "city" },
     { header: "Pays", accessorKey: "state" },
