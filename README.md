@@ -1,70 +1,40 @@
-# djyn-custom-lib-modal
+# Health Wealth
 
-A simple, customizable React modal component. Easy to use, minimal setup, and lightweight.
+**Health Wealth** est une application RH permettant de créer et gérer une base d’employés via une interface utilisateur moderne. Elle a été développée dans le cadre du parcours *Développeur Front-End* d’OpenClassrooms.
 
-## Installation
+## ✨ Fonctionnalités
+
+- Formulaire de création d’un employé avec validation
+- Sélecteurs de date ergonomiques avec `react-datepicker`
+- Ajout d’employés au store global via `Redux Toolkit`
+- Affichage des employés dans un tableau interactif :
+  - Tri croissant/décroissant
+  - Pagination dynamique (1 à 10 lignes par page)
+  - Recherche globale
+  - Navigation entre les pages
+- Modale de confirmation personnalisée avec une librairie externe
+
+## 🛠️ Technologies utilisées
+
+- **React**
+- **Redux Toolkit** & `react-redux`
+- **React Router DOM**
+- **@tanstack/react-table** (tableau avancé)
+- **Sass** (SCSS)
+- **React Datepicker**
+- Librairie externe : [`djyn-custom-lib-modal`](https://www.npmjs.com/package/djyn-custom-lib-modal)
+
+## 📦 Installation
 
 ```bash
+git clone https://github.com/votre-utilisateur/health-wealth.git
+cd health-wealth
+npm install
+npm run dev
+
+## 📚 Librairie externe personnalisée
+
+Ce projet utilise une modale personnalisée développée pour l’occasion et publiée sur npm :
+
 npm install djyn-custom-lib-modal
-```
 
-or
-
-```bash
-yarn add djyn-custom-lib-modal
-```
-
-## Usage
-
-```jsx
-import React, { useState } from 'react';
-import Modal from 'djyn-custom-lib-modal';
-
-function App() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <>
-      <button onClick={() => setIsOpen(true)}>Open Modal</button>
-      <Modal
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        backgroundColor="#00000088"
-        textColor="#333"
-        closeButtonColor="#ff0000"
-      >
-        <h2>Hello from the modal!</h2>
-        <p>This is a customizable React modal.</p>
-      </Modal>
-    </>
-  );
-}
-```
-
-## Props
-
-| Prop               | Type     | Default      | Description                                  |
-|--------------------|----------|--------------|----------------------------------------------|
-| `isOpen`           | boolean  | —            | Controls the visibility of the modal         |
-| `onClose`          | function | —            | Function called when modal is closed         |
-| `children`         | node     | —            | Content of the modal                         |
-| `backgroundColor`  | string   | `#00000088`  | Background overlay color                     |
-| `textColor`        | string   | `#000`       | Text color inside the modal                  |
-| `closeButtonColor` | string   | `#aaa`       | Color of the close (×) button                |
-
-## Close Behavior
-
-- Click on the **×** button
-- Press **Escape** key
-
-## Styling
-
-The components includes his own main style, please use the props to modify it and don't override the CSS.
-
-## Repository
-
-[GitHub - Matpetitj/custom-lib-modal](https://github.com/Matpetitj/custom-lib-modal)
-
-## License
-
-MIT
