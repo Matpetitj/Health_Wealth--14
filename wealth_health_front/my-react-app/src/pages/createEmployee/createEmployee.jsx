@@ -9,6 +9,8 @@ import DatePicker from 'react-datepicker';
 
 import Modal from 'djyn-custom-lib-modal';
 
+import CustomDatePicker from "../../components/datePicker/datePicker";
+
 import pays from "../../data/pays.json";
 import departements from "../../data/departements.json";
 
@@ -89,21 +91,23 @@ const handleSubmit = (e) => {
         <input type="text" id="lastName" value={formData.lastName} onChange={handleChange} />
 
         <label htmlFor="dateOfBirth">Date de naissance</label>
-        <DatePicker
+        <CustomDatePicker
           selected={formData.dateOfBirth}
           onChange={(date) => setFormData((prev) => ({ ...prev, dateOfBirth: date }))}
-          dateFormat="yyyy-MM-dd"
-          id="dateOfBirth"
-          placeholderText="Sélectionnez une date"
+          placeholder="Date de naissance"
+          backgroundColor="#fff"
+          textColor="#4f772d"
+          borderColor="#4f772d"
         />
 
         <label htmlFor="startDate">Date d'entrée</label>
-        <DatePicker
+        <CustomDatePicker
           selected={formData.startDate}
           onChange={(date) => setFormData((prev) => ({ ...prev, startDate: date }))}
-          dateFormat="yyyy-MM-dd"
-          id="startDate"
-          placeholderText="Sélectionnez une date"
+          placeholder="Date d'entrée"
+          backgroundColor="#fff"
+          textColor="#4f772d"
+          borderColor="#4f772d"
         />
 
         <fieldset className="address">

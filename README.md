@@ -32,9 +32,11 @@ cd health-wealth
 npm install
 npm run dev
 
+npm run build pour préparer le mode de production
+npm run preview pour lancer le site en mode production
+
 ## 📚 Librairie externe personnalisée
 
 Ce projet utilise une modale personnalisée développée pour l’occasion et publiée sur npm :
 
 npm install djyn-custom-lib-modal
-
