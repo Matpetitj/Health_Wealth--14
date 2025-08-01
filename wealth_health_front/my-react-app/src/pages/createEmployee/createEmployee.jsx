@@ -5,8 +5,6 @@ import { useDispatch } from 'react-redux';
 
 import { addEmployee } from '../../redux/slice/employeeSlice';
 
-import DatePicker from 'react-datepicker';
-
 import Modal from 'djyn-custom-lib-modal';
 
 import CustomDatePicker from "../../components/datePicker/datePicker";

@@ -1,5 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import "./datePicker.scss";
+import DateDay from "./dateDay";
+import DateMonth from "./dateMonth";
+import DateYear from "./dateYear";
 
 const CustomDatePicker = ({
   selected,
@@ -25,41 +28,19 @@ const CustomDatePicker = ({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const daysInMonth = (month, year) => new Date(year, month + 1, 0).getDate();
-
   const formatDate = (date) => {
-    return date.toISOString().split("T")[0]; // yyyy-mm-dd
+    const d = new Date(date);
+    const day = String(d.getDate()).padStart(2, "0");
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const year = d.getFullYear();
+    return `${day}-${month}-${year}`;
   };
 
   const handleDateClick = (day) => {
     const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+    setCurrentDate(newDate);
     onChange(newDate);
     setIsOpen(false);
-  };
-
-  const renderCalendar = () => {
-    const year = currentDate.getFullYear();
-    const month = currentDate.getMonth();
-    const days = daysInMonth(month, year);
-    const startDay = new Date(year, month, 1).getDay();
-
-    const blanks = Array.from({ length: startDay }, (_, i) => <div key={`blank-${i}`} className="blank-day"></div>);
-    const dayButtons = Array.from({ length: days }, (_, i) => (
-      <button
-        key={`day-${i + 1}`}
-        className="day-button"
-        onClick={() => handleDateClick(i + 1)}
-      >
-        {i + 1}
-      </button>
-    ));
-
-    return [...blanks, ...dayButtons];
-  };
-
-  const handleMonthChange = (delta) => {
-    const newDate = new Date(currentDate.setMonth(currentDate.getMonth() + delta));
-    setCurrentDate(new Date(newDate));
   };
 
   return (
@@ -70,21 +51,24 @@ const CustomDatePicker = ({
         value={selected ? formatDate(selected) : ""}
         placeholder={placeholder}
         onClick={() => setIsOpen(!isOpen)}
-        style={{
-          backgroundColor,
-          color: textColor,
-          borderColor,
-          fontSize,
-        }}
+        style={{ backgroundColor, color: textColor, borderColor, fontSize }}
       />
       {isOpen && (
         <div className="calendar-dropdown">
           <div className="calendar-header">
-            <button onClick={() => handleMonthChange(-1)}>←</button>
-            <span>{currentDate.toLocaleString("default", { month: "long", year: "numeric" })}</span>
-            <button onClick={() => handleMonthChange(1)}>→</button>
+            <DateMonth
+              currentDate={currentDate}
+              onMonthSelect={(date) => setCurrentDate(date)}
+            />
+            <DateYear
+              currentDate={currentDate}
+              onYearSelect={(date) => setCurrentDate(date)}
+              range={100}
+            />
           </div>
-          <div className="calendar-grid">{renderCalendar()}</div>
+          <div className="calendar-grid">
+            <DateDay currentDate={currentDate} onDateClick={handleDateClick} />
+          </div>
         </div>
       )}
     </div>
