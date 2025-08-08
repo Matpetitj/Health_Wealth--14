@@ -1,18 +1,20 @@
-import "./createEmployee.scss"
+/* File: CreateEmployee.jsx */
+import "./createEmployee.scss";
 
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 
-import { addEmployee } from '../../redux/slice/employeeSlice';
+import { addEmployee } from "../../redux/slice/employeeSlice";
 
-import Modal from 'djyn-custom-lib-modal';
+import Modal from "djyn-custom-lib-modal";
 
+// Attention : importer la nouvelle version du composant
 import CustomDatePicker from "../../components/datePicker/datePicker";
 
 import pays from "../../data/pays.json";
 import departements from "../../data/departements.json";
 
-import 'react-datepicker/dist/react-datepicker.css';
+import "react-datepicker/dist/react-datepicker.css";
 
 const CreateEmployee = () => {
 
@@ -21,15 +23,15 @@ const CreateEmployee = () => {
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    firstName: "",
+    lastName: "",
     dateOfBirth: null,
     startDate: null,
-    street: '',
-    city: '',
-    state: '',
-    zipCode: '',
-    department: 'Sales',
+    street: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    department: "Sales",
   });
 
   const handleChange = (e) => {
@@ -37,45 +39,46 @@ const CreateEmployee = () => {
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
-const handleSubmit = (e) => {
-  e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  // Expressions pour validation
-  const nameRegex = /^[A-Za-zÀ-ÿ\s'-]+$/;
-  const zipCodeRegex = /^[0-9]{4,10}$/;
+    // Expressions pour validation
+    const nameRegex = /^[A-Za-zÀ-ÿ\s'-]+$/;
+    const zipCodeRegex = /^[0-9]{4,10}$/;
 
-  // Vérifications simples
-  if (
-    !formData.firstName.match(nameRegex) ||
-    !formData.lastName.match(nameRegex) ||
-    !formData.dateOfBirth ||
-    !formData.startDate ||
-    formData.street.trim() === '' ||
-    formData.city.trim() === '' ||
-    formData.state.trim() === '' ||
-    !formData.zipCode.toString().match(zipCodeRegex) ||
-    formData.department.trim() === ''
-  ) {
-    alert("Merci de remplir correctement tous les champs.");
-    return;
-  }
+    // Vérifications simples
+    if (
+      !formData.firstName.match(nameRegex) ||
+      !formData.lastName.match(nameRegex) ||
+      !formData.dateOfBirth ||
+      !formData.startDate ||
+      formData.street.trim() === "" ||
+      formData.city.trim() === "" ||
+      formData.state.trim() === "" ||
+      !formData.zipCode.toString().match(zipCodeRegex) ||
+      formData.department.trim() === ""
+    ) {
+      alert("Merci de remplir correctement tous les champs.");
+      return;
+    }
 
-  dispatch(addEmployee(formData));
-  setIsModalOpen(true);
+    // Si tu veux envoyer des dates au backend, pense à les sérialiser (ex: .toISOString())
+    dispatch(addEmployee(formData));
+    setIsModalOpen(true);
 
-  // Reset
-  setFormData({
-    firstName: '',
-    lastName: '',
-    dateOfBirth: null,
-    startDate: null,
-    street: '',
-    city: '',
-    state: '',
-    zipCode: '',
-    department: 'Sales',
-  });
-};
+    // Reset
+    setFormData({
+      firstName: "",
+      lastName: "",
+      dateOfBirth: null,
+      startDate: null,
+      street: "",
+      city: "",
+      state: "",
+      zipCode: "",
+      department: "Sales",
+    });
+  };
 
   return (
     <div className="createEmployee_container">
@@ -96,6 +99,8 @@ const handleSubmit = (e) => {
           backgroundColor="#fff"
           textColor="#4f772d"
           borderColor="#4f772d"
+          minAge={18}
+          yearRange={100}
         />
 
         <label htmlFor="startDate">Date d'entrée</label>
@@ -120,10 +125,11 @@ const handleSubmit = (e) => {
           <label htmlFor="state">Pays</label>
           <select id="state" value={formData.state} onChange={handleChange}>
             <option value="">Choisir un pays</option>
-            {pays.map((pays) =>
-            <option key={pays.code} value={pays.name}>
-              {pays.name}
-            </option>)}
+            {pays.map((pays) => (
+              <option key={pays.code} value={pays.name}>
+                {pays.name}
+              </option>
+            ))}
           </select>
 
           <label htmlFor="zipCode">Code postal</label>
@@ -133,12 +139,13 @@ const handleSubmit = (e) => {
         <label htmlFor="department">Département</label>
         <select id="department" value={formData.department} onChange={handleChange}>
           <option value="">Choisir un département</option>
-          {departements.map((dept, idx) => 
+          {departements.map((dept, idx) => (
             <option key={idx} value={dept}>{dept}</option>
-          )}
+          ))}
         </select>
         <button type="submit">Sauvegarder</button>
       </form>
+
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

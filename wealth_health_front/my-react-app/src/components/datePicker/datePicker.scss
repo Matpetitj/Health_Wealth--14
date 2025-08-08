@@ -1,5 +1,3 @@
-@use '../../utils/scss/variables';
-
 .custom-datepicker {
   position: relative;
   display: inline-block;
@@ -27,7 +25,7 @@
   border-radius: 8px;
   padding: 10px;
   z-index: 10;
-  width: 220px; // même largeur que l’input
+  width: 220px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -112,4 +110,18 @@
 
 .dropdown-item:hover {
   background-color: #dbe5cc;
+}
+
+.day-button.prev-month,
+.day-button.next-month {
+  color: #999;
+}
+
+.day-button.prev-month:hover,
+.day-button.next-month:hover {
+  color: #FFF;
+}
+
+.day-button.current-month {
+  color: #333;
 }
