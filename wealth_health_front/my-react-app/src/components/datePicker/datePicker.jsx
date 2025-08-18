@@ -78,13 +78,13 @@ const CustomDatePicker = ({
   };
 
   // Sélection d'un jour (clamp final)
-  const handleDateClick = (day) => {
-    const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
-    const finalDate = clampToMaxDate(newDate, computedMaxDate);
-    setCurrentDate(finalDate);
-    onChange && onChange(finalDate);
-    setIsOpen(false);
-  };
+const handleDateClick = (date) => {
+  const finalDate = clampToMaxDate(date, computedMaxDate);
+  setCurrentDate(finalDate);
+  onChange && onChange(finalDate);
+  setIsOpen(false);
+};
+
 
   // 2️⃣ Navigation mois/année avec clamp préventif
   const handleMonthSelect = (date) => {

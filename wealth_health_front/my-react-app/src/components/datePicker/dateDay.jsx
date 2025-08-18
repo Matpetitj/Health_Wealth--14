@@ -1,39 +1,54 @@
 import React from "react";
 
 const DateDay = ({ currentDate, onDateClick, maxDate }) => {
-  const daysInMonth = (month, year) => new Date(year, month + 1, 0).getDate();
-
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
-  const days = daysInMonth(month, year);
 
-  // Weekday of the 1st (0 = Sunday)
-  const startDay = new Date(year, month, 1).getDay();
+  const firstDayOfMonth = new Date(year, month, 1);
+  const lastDayOfMonth = new Date(year, month + 1, 0);
 
-  const blanks = Array.from({ length: startDay }, (_, i) => (
-    <div key={`blank-${i}`} className="blank-day" aria-hidden />
-  ));
+  const startDay = firstDayOfMonth.getDay();
+  const totalDays = lastDayOfMonth.getDate();
 
-  const dayButtons = Array.from({ length: days }, (_, i) => {
-    const dayNum = i + 1;
-    const date = new Date(year, month, dayNum);
-    const isDisabled = maxDate ? date.getTime() > new Date(maxDate.getFullYear(), maxDate.getMonth(), maxDate.getDate()).getTime() : false;
+  // Décalage pour commencer la semaine le lundi
+  const offset = (startDay + 6) % 7;
 
-    return (
-      <button
-        key={`day-${dayNum}`}
-        type="button"
-        className={`day-button ${isDisabled ? "disabled" : ""}`}
-        onClick={() => !isDisabled && onDateClick(dayNum)}
-        disabled={isDisabled}
-        aria-disabled={isDisabled}
+  const totalCells = 42;
+  const days = [];
+
+  for (let i = 0; i < totalCells; i++) {
+    let displayDate, isCurrentMonth = true;
+
+    if (i < offset) {
+      // Jours du mois précédent
+      displayDate = new Date(year, month, -(offset - i - 1));
+      isCurrentMonth = false;
+    } else if (i >= offset + totalDays) {
+      // Jours du mois suivant
+      displayDate = new Date(year, month + 1, i - (offset + totalDays) + 1);
+      isCurrentMonth = false;
+    } else {
+      // Jours du mois courant
+      const day = i - offset + 1;
+      displayDate = new Date(year, month, day);
+    }
+
+    const isDisabled = maxDate && displayDate > maxDate;
+
+    days.push(
+      <div
+        key={displayDate.toISOString()}
+        className={`day 
+          ${isCurrentMonth ? "current-month" : "other-month"} 
+          ${isDisabled ? "disabled" : ""}`}
+        onClick={() => !isDisabled && onDateClick(displayDate)}
       >
-        {dayNum}
-      </button>
+        {displayDate.getDate()}
+      </div>
     );
-  });
+  }
 
-  return <>{[...blanks, ...dayButtons]}</>;
+  return <div className="days-grid">{days}</div>;
 };
 
 export default DateDay;

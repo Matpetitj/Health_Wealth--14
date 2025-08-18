@@ -2,7 +2,7 @@
   position: relative;
   display: inline-block;
   margin-bottom: 1rem;
-  width: 220px; // largeur fixe raisonnable
+  width: 220px; // largeur fixe pour l'input uniquement
 }
 
 .custom-datepicker input {
@@ -25,8 +25,9 @@
   border-radius: 8px;
   padding: 10px;
   z-index: 10;
-  width: 220px;
+  min-width: 220px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 .calendar-header {
@@ -50,30 +51,49 @@
   }
 }
 
-.calendar-grid {
+/* Grille des jours */
+.days-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, 1fr); // 7 colonnes = jours de la semaine
   gap: 4px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.day-button,
-.blank-day {
-  width: 100%;
+.day {
   aspect-ratio: 1 / 1;
-  text-align: center;
-  border: none;
-  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 0.85rem;
+  transition: background-color 0.2s;
+  background: #f5f5f5;
   color: #333;
 
-  &:hover {
+  &:hover:not(.disabled) {
     background-color: #4f772d;
-    color: white;
+    color: #fff;
   }
 }
 
+/* Styles spécifiques selon le type de jour */
+.day.current-month {
+  color: #333;
+}
+
+.day.other-month {
+  color: #999;
+}
+
+.day.disabled {
+  color: #bbb;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Dropdowns mois et année */
 .dropdown-toggle {
   background-color: #f5f5f5;
   color: #4f772d;
@@ -84,10 +104,10 @@
   font-size: 0.9rem;
   min-width: 100px;
   text-align: left;
-}
 
-.dropdown-toggle:hover {
-  background-color: #e8f0e1;
+  &:hover {
+    background-color: #e8f0e1;
+  }
 }
 
 .dropdown-list {
@@ -106,22 +126,8 @@
   padding: 6px 10px;
   cursor: pointer;
   color: #4f772d;
-}
 
-.dropdown-item:hover {
-  background-color: #dbe5cc;
-}
-
-.day-button.prev-month,
-.day-button.next-month {
-  color: #999;
-}
-
-.day-button.prev-month:hover,
-.day-button.next-month:hover {
-  color: #FFF;
-}
-
-.day-button.current-month {
-  color: #333;
+  &:hover {
+    background-color: #dbe5cc;
+  }
 }
