@@ -7,9 +7,7 @@ import { useDispatch } from "react-redux";
 import { addEmployee } from "../../redux/slice/employeeSlice";
 
 import Modal from "djyn-custom-lib-modal";
-
-// Attention : importer la nouvelle version du composant
-import CustomDatePicker from "../../components/datePicker/datePicker";
+import DatePicker from "custom-lib-datepicker";
 
 import pays from "../../data/pays.json";
 import departements from "../../data/departements.json";
@@ -92,7 +90,7 @@ const CreateEmployee = () => {
         <input type="text" id="lastName" value={formData.lastName} onChange={handleChange} />
 
         <label htmlFor="dateOfBirth">Date de naissance</label>
-        <CustomDatePicker
+        <DatePicker
           selected={formData.dateOfBirth}
           onChange={(date) => setFormData((prev) => ({ ...prev, dateOfBirth: date }))}
           placeholder="Date de naissance"
@@ -104,7 +102,7 @@ const CreateEmployee = () => {
         />
 
         <label htmlFor="startDate">Date d'entrée</label>
-        <CustomDatePicker
+        <DatePicker
           selected={formData.startDate}
           onChange={(date) => setFormData((prev) => ({ ...prev, startDate: date }))}
           placeholder="Date d'entrée"
