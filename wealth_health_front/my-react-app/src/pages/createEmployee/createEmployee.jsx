@@ -12,8 +12,6 @@ import DatePicker from "custom-lib-datepicker";
 import pays from "../../data/pays.json";
 import departements from "../../data/departements.json";
 
-import "react-datepicker/dist/react-datepicker.css";
-
 const CreateEmployee = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -60,7 +58,6 @@ const CreateEmployee = () => {
       return;
     }
 
-    // Si tu veux envoyer des dates au backend, pense à les sérialiser (ex: .toISOString())
     dispatch(addEmployee(formData));
     setIsModalOpen(true);
 
